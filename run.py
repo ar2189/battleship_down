@@ -25,6 +25,19 @@ class Game(object):
         self.guess_col = 0
 
 
+    def create_matrix(self, max_x, max_y):
+        """
+        Define the matrix by creating the board and also
+        where we take in the max x and max y to define its size
+        """
+        matrix = list(range(max_x))
+        for x in matrix:
+            matrix[x] = list(range(max_y))
+            for y in range(max_y):
+                matrix[x][y] = "O"
+        return c.deepcopy(matrix)
+
+
     def print_board(self, board_in):
         """
         Defining the print board.
