@@ -1,61 +1,32 @@
-# Battleship
+from random import randint
 
-# Imports
-import copy as c
-import os
-import random as rand
+# Board for holding the ship locations
+HIDDEN_BOARD = [[" "] * 8 for x in range(8)]
+
+# Board for displaying hits and misses
+GUESS_BOARD = [[" "] * 8 for i in range(8)]
 
 
-class Game(object):
+def print_board(board):
     """
-    Main board class. Sets board size, the number of players
-    and the ships placed randomely.
+    Function to display board with rows and columns.
+    By giving the columns number, it differentiates againts the row.
     """
-    def __init__(self, players):
-        self.guesses = 5
-        self.player_list = []
-        for player in range(players):
-            self.player_list.append(self.guesses)
-        self.current_player = 1
-        self.board = self.creatematrix(5, 5)
-        self.board_visible = c.deepcopy(self.board)
-        self.ship_row = rand.randint(0, 4)
-        self.ship_col = rand.randint(0, 4)
-        self.guess_row = 0
-        self.guess_col = 0
+    print(" A B C D E F G H")
+    print(" +-+-+-+-+-+-+-+")
+    row_number = 1
+    for row in board:
+        print("%d|%s|" % (row_number, "|".join(row)))
+        row_number += 1
 
 
-    def create_matrix(self, max_x, max_y):
-        """
-        Define the matrix by creating the board and also
-        where we take in the max x and max y to define its size
-        """
-        matrix = list(range(max_x))
-        for x in matrix:
-            matrix[x] = list(range(max_y))
-            for y in range(max_y):
-                matrix[x][y] = "O"
-        return c.deepcopy(matrix)
-
-
-    def print_board(self, board_in):
-        """
-        Defining the print board.
-        x represents rows.
-        y represents columns.
-        """
-        x = 0
-        y = 0
-        for column in board_in:
-            y = 0
-            for row in column:
-                if y == 0:
-                    print(" ", row, end=" ")
-                elif y == len(board_in[x]):
-                    print("", row, end=""):
-                else:
-                    print(row, end=" ")
-                y += 1
-            print()
-            x += 1
-        return None    
+letters_to_numbers  = {
+    'A' : 0,
+    'B' : 1,
+    'C' : 2,
+    'D' : 3,
+    'E' : 4,
+    'F' : 5,
+    'G' : 6,
+    'H' : 7
+}
