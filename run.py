@@ -30,3 +30,14 @@ letters_to_numbers  = {
     'G' : 6,
     'H' : 7
 }
+
+def create_ships(board):
+    """
+    Function to create ships inside the board randomely.
+    With this you can decide how many ships to create.
+    """
+    for ship in range(5):
+        ship_row, ship_column = randint(0, 7), randint(0, 7)
+        while board[ship_row][ship_column] == 'X':
+            ship_row, ship_column = get_ship_location()
+        board[ship_row][ship_column = 'X']
